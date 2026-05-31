@@ -34,7 +34,11 @@ def candidato():
 
 @app.route("/admin")
 def admin():
-    return render_template("admin.html")
+    return render_template(
+        "admin.html",
+        total_candidatos=len(candidatos),
+        total_vacantes=len(vacantes)
+    )
 
 candidatos = []
 
@@ -100,6 +104,11 @@ def analisis():
 @app.route("/ranking")
 def ranking():
     return render_template("ranking.html")
+
+
+@app.route("/acerca")
+def acerca():
+    return render_template("acerca.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card shadow p-5">
+
+    <h1 class="mb-4 text-center">
+        🤖 Acerca de TalentIA
+    </h1>
+
+    <p class="lead text-center">
+        TalentIA es un agente autónomo diseñado para apoyar el proceso de reclutamiento y selección de personal mediante el análisis inteligente de currículums vitae.
+    </p>
+
+    <hr>
+
+    <h3>🎯 Objetivo</h3>
+
+    <p>
+        Automatizar la evaluación de candidatos, identificar los perfiles más adecuados para una vacante y generar información útil para la toma de decisiones.
+    </p>
+
+    <hr>
+
+    <h3>⚙️ ¿Por qué es un agente autónomo?</h3>
+
+    <div class="row mt-4">
+
+        <div class="col-md-3">
+            <div class="card p-3 h-100">
+                <h5>👁️ Percibe</h5>
+                <p>
+                    Recibe CVs, datos de candidatos y requisitos de vacantes.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card p-3 h-100">
+                <h5>🧠 Razona</h5>
+                <p>
+                    Analiza habilidades, experiencia y compatibilidad entre candidatos y vacantes.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card p-3 h-100">
+                <h5>🎯 Decide</h5>
+                <p>
+                    Determina qué candidatos poseen mejor perfil para una determinada vacante.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card p-3 h-100">
+                <h5>⚡ Actúa</h5>
+                <p>
+                    Genera rankings, reportes y apoyo para la comunicación con candidatos.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <h3>🛠 Tecnologías Utilizadas</h3>
+
+    <ul>
+        <li>Python</li>
+        <li>Flask</li>
+        <li>SQLite</li>
+        <li>PyPDF2</li>
+        <li>python-docx</li>
+        <li>Pandas</li>
+        <li>OpenPyXL</li>
+        <li>FPDF</li>
+        <li>Bootstrap 5</li>
+    </ul>
+
+    <hr>
+
+    <h3>👥 Roles del Sistema</h3>
+
+    <ul>
+        <li><strong>Candidato:</strong> registra información y adjunta su CV.</li>
+        <li><strong>Administrador:</strong> gestiona vacantes, candidatos y resultados.</li>
+    </ul>
+
+</div>
+
+{% endblock %}

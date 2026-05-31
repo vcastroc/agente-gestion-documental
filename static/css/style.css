@@ -1,0 +1,68 @@
+body {
+    background: linear-gradient(135deg, #0b1020, #111827);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar {
+    backdrop-filter: blur(10px);
+}
+
+.card {
+    border: none;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+.btn {
+    border-radius: 12px;
+    padding: 10px 20px;
+}
+
+.form-control {
+    border-radius: 12px;
+    padding: 12px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, #38bdf8, #22c55e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, #ffffff, #e0f2fe);
+}
+
+.table {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.dashboard-card {
+    background: #ffffff;
+    border-left: 6px solid #38bdf8;
+}
+
+.dashboard-card:hover {
+    background: #f0f9ff;
+    transform: translateY(-6px);
+}
+
+.icon-box {
+    font-size: 2.8rem;
+    margin-bottom: 12px;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, #ffffff, #e0f2fe);
+}
