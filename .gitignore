@@ -9,3 +9,5 @@ uploads/*
 
 reports/*
 !reports/.gitkeep
+
+data/*.db
