@@ -1,0 +1,3 @@
+"""
+Generación de reportes
+"""
