@@ -1,7 +1,68 @@
-<div class="container mt-5 text-center">
-    <h1 class="mb-4">🤖 Agente Autónomo de Reclutamiento</h1>
-    <p class="lead">Sistema inteligente para analizar CVs y seleccionar candidatos.</p>
+{% extends "base.html" %}
 
-    <a href="/candidato" class="btn btn-primary btn-lg m-2">Ingresar como Candidato</a>
-    <a href="/admin" class="btn btn-dark btn-lg m-2">Ingresar como Administrador</a>
-</div>
+{% block content %}
+
+<section class="py-5 text-white" style="min-height: 90vh;">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <span class="badge bg-info text-dark mb-3">INTELIGENCIA ARTIFICIAL AVANZADA</span>
+
+            <h1 class="display-4 fw-bold">
+                Agente Autónomo de <br>
+                <span class="text-info">Reclutamiento Inteligente</span>
+            </h1>
+
+            <p class="lead mt-3">
+                Automatiza el análisis de CVs, calcula compatibilidad,
+                genera rankings y apoya la selección de talento.
+            </p>
+
+            <a href="/candidato" class="btn btn-info btn-lg mt-3">
+                Registrarse como Candidato
+            </a>
+
+            <a href="/admin" class="btn btn-outline-light btn-lg mt-3 ms-2">
+                Ingresar como Administrador
+            </a>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card bg-dark border-info shadow p-4">
+                <h4 class="text-info">Panel Inteligente</h4>
+                <p>📄 Análisis automático de CVs</p>
+                <p>🧠 Detección de habilidades</p>
+                <p>📊 Ranking de candidatos</p>
+                <p>📧 Correos automáticos</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="text-center text-white py-5">
+    <h2>¿Qué hace el agente?</h2>
+
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card bg-dark text-white p-3">
+                <h5>Analiza CVs</h5>
+                <p>Extrae datos, habilidades y experiencia.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card bg-dark text-white p-3">
+                <h5>Calcula compatibilidad</h5>
+                <p>Compara cada CV con la vacante.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card bg-dark text-white p-3">
+                <h5>Genera ranking</h5>
+                <p>Ordena candidatos automáticamente.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
