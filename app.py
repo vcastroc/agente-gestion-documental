@@ -92,6 +92,15 @@ def ver_vacantes():
         vacantes=vacantes
     )
 
+@app.route("/analisis")
+def analisis():
+    return render_template("analisis.html")
+
+
+@app.route("/ranking")
+def ranking():
+    return render_template("ranking.html")
+
 if __name__ == "__main__":
     app.run(debug=True)
 
