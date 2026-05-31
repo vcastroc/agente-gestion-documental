@@ -1,0 +1,6 @@
+database/*.db
+reports/*.pdf
+reports/*.xlsx
+uploads/*
+!uploads/.gitkeep
+data/demo_cvs/

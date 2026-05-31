@@ -1,0 +1,14 @@
+{
+  "title": "Desarrollador Python Junior",
+  "area": "Tecnología",
+  "description": "Desarrollar aplicaciones internas y módulos de análisis de datos.",
+  "requirements": "Formación en sistemas o afines. Conocimientos de desarrollo y control de versiones.",
+  "required_experience": 2,
+  "required_skills": [
+    "Python",
+    "SQL",
+    "Git",
+    "Streamlit",
+    "Scikit-Learn"
+  ]
+}
