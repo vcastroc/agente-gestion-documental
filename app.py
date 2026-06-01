@@ -1,8 +1,40 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, session
+import sqlite3
 import os
 
 app = Flask(__name__)
+app.secret_key = "clave_secreta_talentia"
+# usuarios
+usuarios = {
+    "admin": {
+        "password": "1234",
+        "rol": "admin"
+    },
+    "candidato": {
+        "password": "1234",
+        "rol": "candidato"
+    }
+}
+
+def crear_bd():
+    conexion = sqlite3.connect("talentia.db")
+    cursor = conexion.cursor()
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS usuarios (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            usuario TEXT UNIQUE NOT NULL,
+            password TEXT NOT NULL,
+            rol TEXT NOT NULL
+        )
+    """)
+
+    conexion.commit()
+    conexion.close()
+
+crear_bd()
 app.config["UPLOAD_FOLDER"] = "uploads"
+
 
 @app.route("/")
 def index():
@@ -110,6 +142,66 @@ def ranking():
 def acerca():
     return render_template("acerca.html")
 
+
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
+
+@app.route("/validar_login", methods=["POST"])
+def validar_login():
+    usuario = request.form["usuario"]
+    password = request.form["password"]
+
+    conexion = sqlite3.connect("talentia.db")
+    cursor = conexion.cursor()
+
+    cursor.execute(
+        "SELECT * FROM usuarios WHERE usuario=? AND password=?",
+        (usuario, password)
+    )
+
+    user = cursor.fetchone()
+    conexion.close()
+
+    if user:
+        session["usuario"] = user[1]
+        session["rol"] = user[3]
+
+        if user[3] == "admin":
+            return redirect("/admin")
+        else:
+            return redirect("/candidato")
+
+    return "Credenciales incorrectas"
+
+@app.route("/registro_usuario")
+def registro_usuario():
+    return render_template("registro_usuario.html")
+
+@app.route("/guardar_usuario", methods=["POST"])
+def guardar_usuario():
+
+    usuario = request.form["usuario"]
+    password = request.form["password"]
+    rol = request.form["rol"]
+
+    conexion = sqlite3.connect("talentia.db")
+    cursor = conexion.cursor()
+
+    cursor.execute(
+        """
+        INSERT INTO usuarios
+        (usuario, password, rol)
+        VALUES (?, ?, ?)
+        """,
+        (usuario, password, rol)
+    )
+
+    conexion.commit()
+    conexion.close()
+
+    return redirect("/login")
 if __name__ == "__main__":
     app.run(debug=True)
 

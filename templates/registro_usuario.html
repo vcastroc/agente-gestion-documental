@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-6">
+
+        <div class="card p-4">
+
+            <h2 class="mb-4">👤 Registrar Usuario</h2>
+
+            <form action="/guardar_usuario" method="POST">
+
+                <label>Usuario</label>
+                <input type="text" name="usuario"
+                       class="form-control mb-3" required>
+
+                <label>Contraseña</label>
+                <input type="password" name="password"
+                       class="form-control mb-3" required>
+
+                <label>Rol</label>
+                <select name="rol" class="form-control mb-4">
+                    <option value="admin">Administrador</option>
+                    <option value="candidato">Candidato</option>
+                </select>
+
+                <button class="btn btn-success w-100">
+                    Registrar
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
