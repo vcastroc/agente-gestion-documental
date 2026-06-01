@@ -2,102 +2,88 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Agente de Reclutamiento</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalentIA</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-<style>
-
-body{
-    background:#0b1020;
-}
-
-.card{
-    border:none;
-    border-radius:15px;
-}
-
-.form-control{
-    border-radius:10px;
-}
-
-.btn{
-    border-radius:10px;
-}
-
-.card{
-    transition: 0.3s;
-}
-
-.card:hover{
-    transform: translateY(-5px);
-}
-
-</style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body>
+<body class="dark-theme">
 
-<div class="container-fluid">
+<div class="layout">
 
-    <div class="row">
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="logo">🤖</div>
 
-        <div class="col-md-2 bg-dark min-vh-100 p-3">
-
-            <h4 class="text-white">
-                🤖 TalentIA
-            </h4>
-
-            <hr class="text-secondary">
-
-            <a href="/" class="btn btn-dark w-100 mb-2">
-                Inicio
-            </a>
-
-            <a href="/admin" class="btn btn-dark w-100 mb-2">
-                Dashboard
-            </a>
-
-            <a href="/candidatos" class="btn btn-dark w-100 mb-2">
-                Candidatos
-            </a>
-
-            <a href="/vacantes" class="btn btn-dark w-100 mb-2">
-                Vacantes
-            </a>
-
-            <a href="/analisis" class="btn btn-dark w-100 mb-2">
-                Análisis
-            </a>
-
-            <a href="/ranking" class="btn btn-dark w-100 mb-2">
-                Ranking
-            </a>
-
-            <a href="/acerca" class="btn btn-dark w-100">
-                Acerca
-            </a>
-
+            <h4>TalentIA</h4>
+            <small>Reclutamiento Inteligente</small>
         </div>
 
-        <div class="col-md-10 p-4">
+        <button onclick="cambiarTema()" class="theme-btn">
+            🌙 / ☀️ 
+        </button>
+
+        <nav class="menu">
+            <a href="/">🏠 Inicio</a>
+            <a href="/admin">📊 Dashboard</a>
+            <a href="/candidato">📝 Registrar Candidato</a>
+            <a href="/candidatos">👥 Candidatos</a>
+            <a href="/vacante">📄 Crear Vacante</a>
+            <a href="/vacantes">💼 Vacantes</a>
+            <a href="/analisis">🤖 Análisis IA</a>
+            <a href="/ranking">🏆 Ranking</a>
+            <a href="/acerca">ℹ️ Acerca</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+
+        <div class="topbar">
+            <h5>Panel de Gestión</h5>
+            <span>Sistema Inteligente de Reclutamiento</span>
+        </div>
+
+        <section class="content-area">
             {% block content %}
             {% endblock %}
-        </div>
+        </section>
 
-    </div>
+        <footer>
+            <p>TalentIA © 2026</p>
+            <small>Agente Autónomo para Reclutamiento Inteligente</small>
+        </footer>
+
+    </main>
 
 </div>
 
+<script>
+function cambiarTema() {
+    document.body.classList.toggle("light-theme");
+    document.body.classList.toggle("dark-theme");
+
+    if (document.body.classList.contains("light-theme")) {
+        localStorage.setItem("tema", "light");
+    } else {
+        localStorage.setItem("tema", "dark");
+    }
+}
+
+window.onload = function() {
+    let tema = localStorage.getItem("tema");
+
+    if (tema === "light") {
+        document.body.classList.remove("dark-theme");
+        document.body.classList.add("light-theme");
+    } else {
+        document.body.classList.remove("light-theme");
+        document.body.classList.add("dark-theme");
+    }
+}
+
+</script>
 </body>
-<footer class="text-center text-white mt-5 p-4">
-    <hr class="text-secondary">
-
-    <p>
-        TalentIA © 2026
-    </p>
-
-    <p>
-        Agente Autónomo para Reclutamiento Inteligente
-    </p>
-</footer>
 </html>

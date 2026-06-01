@@ -2,20 +2,18 @@
 
 {% block content %}
 
-<div class="d-flex justify-content-between align-items-center text-white mb-4">
-    <div>
-        <h2 class="fw-bold">Panel Administrador</h2>
-        <p class="mb-0">Gestiona vacantes, candidatos, análisis y ranking.</p>
-    </div>
-
-    <a href="/acerca" class="btn btn-info">
-        Acerca del Agente
-    </a>
+<div class="card p-4 mb-4">
+    <h2 class="fw-bold">Bienvenido a TalentIA 🚀</h2>
+    <p class="mb-0">
+        Plataforma inteligente para gestionar candidatos, vacantes,
+        análisis automático de CVs y ranking de postulantes.
+    </p>
 </div>
 
 <div class="row mb-4 g-3">
     <div class="col-md-3">
         <div class="card stat-card text-center p-3">
+            <h1>👥</h1>
             <h3>{{ total_candidatos }}</h3>
             <p>Candidatos</p>
         </div>
@@ -23,6 +21,7 @@
 
     <div class="col-md-3">
         <div class="card stat-card text-center p-3">
+            <h1>💼</h1>
             <h3>{{ total_vacantes }}</h3>
             <p>Vacantes</p>
         </div>
@@ -30,6 +29,7 @@
 
     <div class="col-md-3">
         <div class="card stat-card text-center p-3">
+            <h1>🤖</h1>
             <h3>0</h3>
             <p>Analizados</p>
         </div>
@@ -37,6 +37,7 @@
 
     <div class="col-md-3">
         <div class="card stat-card text-center p-3">
+            <h1>📧</h1>
             <h3>0</h3>
             <p>Correos</p>
         </div>
@@ -44,11 +45,10 @@
 </div>
 
 <div class="row g-4">
-
     <div class="col-md-4">
-        <a href="/vacante" class="text-decoration-none text-dark">
-            <div class="card dashboard-card shadow p-4 h-100">
-                <div class="icon-box">📄</div>
+        <a href="/vacante" class="text-decoration-none">
+            <div class="card card-vacante shadow p-4 h-100">
+                <h1>📄</h1>
                 <h4>Crear Vacante</h4>
                 <p>Registrar una nueva oferta laboral.</p>
             </div>
@@ -56,9 +56,9 @@
     </div>
 
     <div class="col-md-4">
-        <a href="/candidatos" class="text-decoration-none text-dark">
-            <div class="card dashboard-card shadow p-4 h-100">
-                <div class="icon-box">👥</div>
+        <a href="/candidatos" class="text-decoration-none">
+            <div class="card card-candidatos shadow p-4 h-100">
+                <h1>👥</h1>
                 <h4>Candidatos</h4>
                 <p>Ver postulantes registrados.</p>
             </div>
@@ -66,9 +66,9 @@
     </div>
 
     <div class="col-md-4">
-        <a href="/vacantes" class="text-decoration-none text-dark">
-            <div class="card dashboard-card shadow p-4 h-100">
-                <div class="icon-box">💼</div>
+        <a href="/vacantes" class="text-decoration-none">
+            <div class="card card-vacante shadow p-4 h-100">
+                <h1>💼</h1>
                 <h4>Vacantes</h4>
                 <p>Consultar vacantes creadas.</p>
             </div>
@@ -76,9 +76,9 @@
     </div>
 
     <div class="col-md-4">
-        <a href="/analisis" class="text-decoration-none text-dark">
-            <div class="card dashboard-card shadow p-4 h-100">
-                <div class="icon-box">🤖</div>
+        <a href="/analisis" class="text-decoration-none">
+            <div class="card card-analisis shadow p-4 h-100">
+                <h1>🤖</h1>
                 <h4>Análisis IA</h4>
                 <p>Analizar CVs automáticamente.</p>
             </div>
@@ -86,9 +86,9 @@
     </div>
 
     <div class="col-md-4">
-        <a href="/ranking" class="text-decoration-none text-dark">
-            <div class="card dashboard-card shadow p-4 h-100">
-                <div class="icon-box">📊</div>
+        <a href="/ranking" class="text-decoration-none">
+            <div class="card card-ranking shadow p-4 h-100">
+                <h1>📊</h1>
                 <h4>Ranking</h4>
                 <p>Ver candidatos mejor puntuados.</p>
             </div>
@@ -96,15 +96,58 @@
     </div>
 
     <div class="col-md-4">
-        <a href="/" class="text-decoration-none text-dark">
-            <div class="card dashboard-card shadow p-4 h-100">
-                <div class="icon-box">🏠</div>
-                <h4>Inicio</h4>
-                <p>Volver a la página principal.</p>
+        <a href="/acerca" class="text-decoration-none">
+            <div class="card card-acerca shadow p-4 h-100">
+                <h1>ℹ️</h1>
+                <h4>Acerca</h4>
+                <p>Conoce cómo funciona el agente autónomo.</p>
             </div>
         </a>
     </div>
-
 </div>
+
+<div class="row mt-4 g-4">
+    <div class="col-md-6">
+        <div class="card p-4">
+            <h4>📊 Resumen del Sistema</h4>
+            <canvas id="graficoResumen"></canvas>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card p-4">
+            <h4>📈 Estado de Procesos</h4>
+            <canvas id="graficoProcesos"></canvas>
+        </div>
+    </div>
+</div>
+
+<script>
+const totalCandidatos = Number("{{ total_candidatos }}");
+const totalVacantes = Number("{{ total_vacantes }}");
+
+new Chart(document.getElementById('graficoResumen'), {
+    type: 'doughnut',
+    data: {
+        labels: ['Candidatos', 'Vacantes'],
+        datasets: [{
+            data: [totalCandidatos || 1, totalVacantes || 1],
+            backgroundColor: ['#22c55e', '#38bdf8']
+        }]
+    }
+});
+
+new Chart(document.getElementById('graficoProcesos'), {
+    type: 'bar',
+    data: {
+        labels: ['Registrados', 'Analizados', 'Correos'],
+        datasets: [{
+            label: 'Cantidad',
+            data: [totalCandidatos || 1, 0, 0],
+            backgroundColor: ['#22c55e', '#a855f7', '#f59e0b']
+        }]
+    }
+});
+</script>
 
 {% endblock %}
