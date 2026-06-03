@@ -1,0 +1,767 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+
+\geometry{top=2.4cm,bottom=2.4cm,left=2.6cm,right=2.6cm}
+\onehalfspacing
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!45!black,
+    urlcolor=blue!60!black,
+    citecolor=blue!45!black,
+    pdftitle={RecruitAI: Agente Autónomo de Reclutamiento Inteligente},
+    pdfauthor={Vane, Xio y Sandra}
+}
+
+\definecolor{primary}{HTML}{174A7E}
+\definecolor{secondary}{HTML}{2D7D9A}
+\definecolor{lightblue}{HTML}{EAF3F8}
+\definecolor{codebg}{HTML}{F5F7FA}
+\definecolor{codeborder}{HTML}{D9E1E8}
+\definecolor{darkgray}{HTML}{3C4858}
+
+\lstdefinestyle{professional}{
+    backgroundcolor=\color{codebg},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    rulecolor=\color{codeborder},
+    numbers=left,
+    numberstyle=\tiny\color{darkgray},
+    keywordstyle=\color{primary}\bfseries,
+    commentstyle=\color{green!45!black},
+    stringstyle=\color{orange!55!black},
+    showstringspaces=false,
+    tabsize=4
+}
+\lstset{style=professional}
+
+\newcommand{\projectname}{RecruitAI}
+\newcommand{\projecttitle}{Agente Autónomo de Reclutamiento Inteligente}
+\newcommand{\editable}[1]{\textcolor{darkgray}{\textit{#1}}}
+
+\begin{document}
+
+% ----------------------------------------------------------
+% Portada
+% ----------------------------------------------------------
+\begin{titlepage}
+    \centering
+    \vspace*{1.2cm}
+
+    {\Large \editable{NOMBRE DE LA UNIVERSIDAD}\par}
+    \vspace{0.35cm}
+    {\large \editable{Facultad o Escuela Profesional}\par}
+    \vspace{1.8cm}
+
+    {\color{primary}\rule{\textwidth}{1.2pt}\par}
+    \vspace{0.55cm}
+    {\Huge\bfseries \projectname\par}
+    \vspace{0.3cm}
+    {\LARGE\bfseries \projecttitle\par}
+    \vspace{0.55cm}
+    {\color{primary}\rule{\textwidth}{1.2pt}\par}
+
+    \vspace{1.5cm}
+    {\Large Informe técnico profesional\par}
+    \vspace{0.5cm}
+    {\large Sistema web con análisis explicable de CV, cola persistente de eventos y worker autónomo\par}
+
+    \vfill
+
+    \begin{tabular}{>{\bfseries}rl}
+        Curso: & \editable{Nombre del curso} \\
+        Docente: & \editable{Nombre del docente} \\
+        Integrantes: & Vane --- Interfaz, arquitectura y flujo del agente \\
+                     & Xio --- Extracción, NLP y compatibilidad \\
+                     & Sandra --- Ranking, correos, reportes e historial \\
+        Fecha: & \today
+    \end{tabular}
+
+    \vfill
+    {\large Lima, Perú\par}
+\end{titlepage}
+
+\pagenumbering{roman}
+\tableofcontents
+\newpage
+\listoftables
+\newpage
+\pagenumbering{arabic}
+
+% ----------------------------------------------------------
+\section{Resumen ejecutivo}
+% ----------------------------------------------------------
+
+\projectname{} es una plataforma web de reclutamiento desarrollada con Flask y SQLite. El sistema permite registrar vacantes, administrar candidatos, cargar currículums vitae (CV), analizar perfiles, calcular compatibilidad, generar rankings explicables, producir reportes en PDF y Excel, preparar invitaciones a entrevistas y enviarlas mediante un servidor SMTP.
+
+La característica principal del trabajo es la incorporación de un \textbf{agente autónomo}. La aplicación web y el motor de análisis se ejecutan como procesos independientes. Flask funciona como panel de operación y monitoreo, mientras que un worker consulta una cola persistente de eventos almacenada en SQLite. De esta forma, el análisis no depende de que una persona mantenga abierta una página o presione un botón para cada CV.
+
+El sistema implementa separación de roles entre el personal de Recursos Humanos (RRHH) y los candidatos. Asimismo, integra validación de archivos, protección CSRF, almacenamiento seguro de contraseñas, control de acceso por rol, historial de acciones, reintentos automáticos y recuperación de eventos interrumpidos.
+
+\textbf{Palabras clave:} agente autónomo, reclutamiento inteligente, Flask, SQLite, análisis de CV, procesamiento asíncrono, SMTP, ranking explicable.
+
+% ----------------------------------------------------------
+\section{Introducción}
+% ----------------------------------------------------------
+
+Los procesos de selección suelen requerir la revisión manual de numerosos CV, la comparación repetitiva de requisitos y la coordinación de entrevistas. Estas actividades consumen tiempo y dificultan mantener criterios uniformes. \projectname{} propone una solución local y auditable que automatiza las tareas repetitivas sin eliminar la supervisión humana en decisiones sensibles.
+
+El proyecto utiliza técnicas de procesamiento de texto orientadas a extracción de información y reglas ponderadas de compatibilidad. No depende de servicios externos de inteligencia artificial para razonar sobre los perfiles. Esta decisión facilita su ejecución local, reduce costos y permite comprender por qué se asignó una puntuación determinada.
+
+La solución también incorpora autonomía operativa. El agente observa eventos del sistema y archivos nuevos, ejecuta análisis en segundo plano, actualiza rankings, genera reportes y prepara acciones posteriores. RRHH conserva el control final antes de enviar las invitaciones por correo.
+
+% ----------------------------------------------------------
+\section{Planteamiento del problema}
+% ----------------------------------------------------------
+
+\subsection{Situación identificada}
+
+En un proceso convencional, RRHH debe realizar manualmente las siguientes actividades:
+
+\begin{itemize}[leftmargin=*]
+    \item recibir CV desde diferentes canales;
+    \item revisar datos personales, experiencia, estudios y habilidades;
+    \item comparar cada perfil con los requisitos de una vacante;
+    \item priorizar candidatos;
+    \item generar reportes;
+    \item preparar mensajes de entrevista;
+    \item registrar el historial de acciones.
+\end{itemize}
+
+Cuando aumenta el número de postulantes, estas tareas se vuelven lentas y propensas a inconsistencias. Además, una aplicación web tradicional puede limitarse a ejecutar lógica únicamente cuando recibe una solicitud HTTP. En ese caso existe automatización, pero no autonomía real.
+
+\subsection{Pregunta de trabajo}
+
+\begin{quote}
+¿Cómo diseñar un sistema web de reclutamiento que analice CV de manera explicable, mantenga separados los permisos de RRHH y candidatos, y ejecute tareas automáticamente fuera del ciclo de peticiones HTTP?
+\end{quote}
+
+% ----------------------------------------------------------
+\section{Objetivos}
+% ----------------------------------------------------------
+
+\subsection{Objetivo general}
+
+Desarrollar una plataforma web con un agente autónomo capaz de percibir nuevos CV y postulaciones, analizar la compatibilidad con vacantes, generar resultados explicables y ejecutar acciones de soporte al reclutamiento con supervisión de RRHH.
+
+\subsection{Objetivos específicos}
+
+\begin{enumerate}[leftmargin=*]
+    \item Implementar autenticación y autorización diferenciada para administradores de RRHH y candidatos.
+    \item Permitir la gestión de vacantes con requisitos, pesos y umbrales configurables.
+    \item Extraer texto y datos relevantes desde archivos PDF y DOCX.
+    \item Calcular una puntuación ponderada basada en habilidades, experiencia y estudios.
+    \item Separar el motor autónomo de la interfaz web mediante un worker independiente.
+    \item Persistir eventos, reintentos y estados de procesamiento en SQLite.
+    \item Generar rankings, justificaciones, reportes PDF y Excel.
+    \item Preparar y enviar invitaciones reales mediante SMTP con aprobación previa de RRHH.
+    \item Mantener trazabilidad mediante historial y monitoreo del worker.
+\end{enumerate}
+
+% ----------------------------------------------------------
+\section{Alcance del sistema}
+% ----------------------------------------------------------
+
+\subsection{Funcionalidades para RRHH}
+
+El administrador puede:
+
+\begin{itemize}[leftmargin=*]
+    \item visualizar un dashboard ejecutivo;
+    \item registrar y cambiar el estado de vacantes;
+    \item consultar candidatos;
+    \item importar CV externos de forma masiva;
+    \item solicitar reprocesos;
+    \item visualizar el ranking y la decisión explicada del agente;
+    \item aprobar borradores y enviar correos reales por SMTP;
+    \item generar reportes;
+    \item consultar el historial;
+    \item monitorear el worker y la cola de eventos.
+\end{itemize}
+
+\subsection{Funcionalidades para candidatos}
+
+El candidato puede:
+
+\begin{itemize}[leftmargin=*]
+    \item crear una cuenta e iniciar sesión;
+    \item editar su perfil;
+    \item cargar o actualizar su CV;
+    \item consultar vacantes activas;
+    \item postular a una vacante;
+    \item visualizar sus postulaciones;
+    \item revisar y responder invitaciones a entrevistas.
+\end{itemize}
+
+\subsection{Límites actuales}
+
+\begin{itemize}[leftmargin=*]
+    \item Los PDF escaneados sin capa de texto requieren incorporar OCR.
+    \item La entrega final de correos depende de un servidor SMTP válido.
+    \item La aplicación utiliza el servidor de desarrollo de Flask; para producción debe emplearse un servidor WSGI.
+    \item El motor de análisis se basa en reglas explicables y un catálogo de habilidades; no utiliza un modelo generativo.
+\end{itemize}
+
+% ----------------------------------------------------------
+\section{Arquitectura de la solución}
+% ----------------------------------------------------------
+
+\subsection{Vista general}
+
+La arquitectura separa la interacción web del procesamiento autónomo:
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+    node distance=1.35cm and 1.55cm,
+    box/.style={rectangle, rounded corners, draw=primary, thick, fill=lightblue, align=center, minimum width=3.2cm, minimum height=1cm},
+    db/.style={cylinder, shape border rotate=90, aspect=0.28, draw=secondary, thick, fill=lightblue, align=center, minimum width=2.8cm, minimum height=1.25cm},
+    arrow/.style={-{Latex[length=2.5mm]}, thick, draw=darkgray}
+]
+    \node[box] (users) {Usuarios\\RRHH y candidatos};
+    \node[box, right=of users] (flask) {Aplicación web\\Flask};
+    \node[db, right=of flask] (sqlite) {SQLite\\datos y eventos};
+    \node[box, below=of sqlite] (worker) {Worker autónomo\\\texttt{agent\_worker.py}};
+    \node[box, left=of worker] (analysis) {Motor de análisis\\y ranking};
+    \node[box, below=of analysis] (actions) {Reportes PDF/Excel\\y borradores SMTP};
+
+    \draw[arrow] (users) -- (flask);
+    \draw[arrow] (flask) -- (sqlite);
+    \draw[arrow] (sqlite) -- (worker);
+    \draw[arrow] (worker) -- (analysis);
+    \draw[arrow] (analysis) -- (actions);
+    \draw[arrow] (actions.east) -| (sqlite.south);
+    \draw[arrow] (sqlite) -- (flask);
+\end{tikzpicture}
+\caption{Arquitectura general de \projectname{}.}
+\label{fig:arquitectura}
+\end{figure}
+
+\subsection{Componentes principales}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{3.5cm}>{\raggedright\arraybackslash}p{10.7cm}}
+\caption{Componentes de software del proyecto.}\\
+\toprule
+\textbf{Componente} & \textbf{Responsabilidad} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Componente} & \textbf{Responsabilidad} \\
+\midrule
+\endhead
+\texttt{app.py} & Define rutas Flask, sesiones, control de acceso por rol, protección CSRF, carga de archivos y renderizado de plantillas. \\
+\texttt{agent\_worker.py} & Ejecuta el loop autónomo, detecta CV nuevos en \texttt{uploads/}, reclama eventos persistentes y despacha tareas. \\
+\texttt{modules/database.py} & Inicializa SQLite, realiza migraciones simples y concentra las operaciones de persistencia. \\
+\texttt{modules/agent.py} & Orquesta ciclos masivos, postulaciones individuales, preanálisis de perfil y acciones posteriores. \\
+\texttt{modules/extractor.py} & Extrae texto desde PDF o DOCX y reconoce correo, teléfono y nombre. \\
+\texttt{modules/analyzer.py} & Detecta habilidades, experiencia y estudios; calcula compatibilidad; genera evidencia y justificación. \\
+\texttt{modules/ranking.py} & Clasifica perfiles según umbrales configurables. \\
+\texttt{modules/reports.py} & Exporta rankings en Excel y PDF. \\
+\texttt{modules/email\_sender.py} & Gestiona la configuración SMTP y envía borradores aprobados por RRHH. \\
+\texttt{templates/} & Contiene interfaces públicas, administrativas y de candidatos. \\
+\bottomrule
+\end{longtable}
+
+% ----------------------------------------------------------
+\section{Diseño del agente autónomo}
+% ----------------------------------------------------------
+
+\subsection{Ciclo operativo}
+
+El agente implementa un ciclo percepción--razonamiento--decisión--acción--retroalimentación:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Percibe:} recibe eventos por acciones web y detecta PDF o DOCX nuevos en \texttt{uploads/}.
+    \item \textbf{Razona:} extrae texto, identifica datos y compara el CV contra la vacante.
+    \item \textbf{Decide:} calcula compatibilidad y asigna un estado.
+    \item \textbf{Actúa:} actualiza ranking, genera reportes y prepara invitaciones.
+    \item \textbf{Retroalimenta:} registra ejecuciones, historial, errores y estado del worker.
+\end{enumerate}
+
+\subsection{Tipos de eventos}
+
+\begin{table}[ht]
+\centering
+\begin{tabularx}{\textwidth}{>{\ttfamily}p{4.2cm}X}
+\toprule
+\textbf{Evento} & \textbf{Descripción} \\
+\midrule
+PREANALIZAR\_PERFIL & Compara el CV personal del candidato con todas las vacantes activas. \\
+ANALIZAR\_POSTULACION & Analiza el CV de un candidato para una vacante elegida. \\
+ANALIZAR\_IMPORTADOS & Procesa CV externos importados por RRHH o detectados en la carpeta de carga. \\
+REPROCESAR\_VACANTE & Recalcula resultados para una vacante solicitada o reactivada. \\
+\bottomrule
+\end{tabularx}
+\caption{Eventos procesados por el worker.}
+\end{table}
+
+\subsection{Persistencia, reintentos y recuperación}
+
+La tabla \texttt{eventos\_agente} almacena el tipo de evento, su payload JSON, estado, número de intentos, límite máximo, disponibilidad temporal, worker responsable, bloqueo temporal y último error. El worker utiliza una transacción SQLite con \texttt{BEGIN IMMEDIATE} para reclamar un solo evento pendiente.
+
+Cuando un worker reclama un evento, establece un arrendamiento temporal (\emph{lease}). Si el proceso se interrumpe antes de completar la tarea, otro ciclo recupera los eventos cuyo bloqueo haya expirado. Ante un error, el evento vuelve a estado pendiente hasta alcanzar el máximo de intentos. Esta estrategia evita perder trabajo cuando el proceso se reinicia.
+
+\subsection{Monitoreo}
+
+El worker actualiza periódicamente la tabla \texttt{estado\_worker}. El dashboard administrativo muestra:
+
+\begin{itemize}[leftmargin=*]
+    \item estado del proceso;
+    \item último latido;
+    \item cantidad de eventos pendientes, procesando y con error;
+    \item lista reciente de eventos;
+    \item ejecuciones autónomas recientes.
+\end{itemize}
+
+% ----------------------------------------------------------
+\section{Modelo de análisis y compatibilidad}
+% ----------------------------------------------------------
+
+\subsection{Extracción de información}
+
+El sistema acepta archivos PDF y DOCX. Para PDF utiliza \texttt{PyPDF2}; para DOCX utiliza \texttt{python-docx}. Después de obtener el texto, aplica expresiones regulares y reglas para extraer correo, teléfono, nombre, años de experiencia y nivel de estudios.
+
+La detección de habilidades emplea coincidencias exactas delimitadas. Esto evita falsos positivos como detectar ``Java'' dentro de ``JavaScript''. El texto se normaliza a minúsculas, se eliminan acentos y se compactan espacios.
+
+\subsection{Puntuación ponderada}
+
+Cada vacante configura tres pesos:
+
+\begin{itemize}[leftmargin=*]
+    \item $w_h$: peso de habilidades;
+    \item $w_e$: peso de experiencia;
+    \item $w_s$: peso de estudios.
+\end{itemize}
+
+Los pesos se normalizan para que su suma sea uno:
+
+\begin{equation}
+\widehat{w_i} = \frac{w_i}{w_h + w_e + w_s}
+\end{equation}
+
+La puntuación de habilidades se calcula como:
+
+\begin{equation}
+P_h = \frac{\text{habilidades requeridas encontradas}}{\text{habilidades requeridas}} \times 100
+\end{equation}
+
+La puntuación de experiencia se limita a 100:
+
+\begin{equation}
+P_e =
+\begin{cases}
+100, & \text{si no se solicita experiencia} \\
+\min\left(\dfrac{\text{años detectados}}{\text{años requeridos}} \times 100, 100\right), & \text{en otro caso}
+\end{cases}
+\end{equation}
+
+La puntuación de estudios es 100 si el nivel detectado cumple o supera el nivel solicitado; de lo contrario es 0. Finalmente:
+
+\begin{equation}
+\text{Compatibilidad} =
+P_h \widehat{w_h} +
+P_e \widehat{w_e} +
+P_s \widehat{w_s}
+\end{equation}
+
+\subsection{Clasificación}
+
+Cada vacante define un umbral de preselección $U_p$ y un umbral de observación $U_o$:
+
+\begin{equation}
+\text{Estado} =
+\begin{cases}
+\text{Preseleccionado}, & \text{si Compatibilidad} \ge U_p \\
+\text{En observación}, & \text{si Compatibilidad} \ge U_o \\
+\text{No recomendado}, & \text{en otro caso}
+\end{cases}
+\end{equation}
+
+La configuración predeterminada asigna 70\% a habilidades, 20\% a experiencia y 10\% a estudios. Los umbrales predeterminados son 80\% para preselección y 60\% para observación.
+
+\subsection{Explicabilidad}
+
+El resultado almacena:
+
+\begin{itemize}[leftmargin=*]
+    \item habilidades encontradas y faltantes;
+    \item experiencia detectada;
+    \item estudios detectados;
+    \item desglose de criterios;
+    \item justificación textual;
+    \item acción sugerida.
+\end{itemize}
+
+Por tanto, RRHH puede revisar el fundamento de cada resultado y no solo un número aislado.
+
+% ----------------------------------------------------------
+\section{Modelo de datos}
+% ----------------------------------------------------------
+
+\begin{longtable}{>{\ttfamily}p{3.3cm}>{\raggedright\arraybackslash}p{10.9cm}}
+\caption{Tablas principales de SQLite.}\\
+\toprule
+\textbf{Tabla} & \textbf{Propósito} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Tabla} & \textbf{Propósito} \\
+\midrule
+\endhead
+usuarios & Cuentas, credenciales hash, rol, perfil y referencia al CV personal. \\
+vacantes & Información de puestos, requisitos, pesos, umbrales, entrevista y estado. \\
+candidatos & Perfiles analizados, incluidos CV externos y perfiles vinculados a usuarios. \\
+analisis & Compatibilidad, clasificación, evidencia y explicación por candidato y vacante. \\
+postulaciones & Relación entre candidatos registrados y vacantes elegidas. \\
+correos & Borradores e invitaciones enviadas, asociados a candidato y vacante. \\
+historial & Bitácora funcional del sistema. \\
+ejecuciones\_agente & Resumen de cada ciclo autónomo, origen, estado y resultado. \\
+eventos\_agente & Cola persistente, reintentos, lease y errores del worker. \\
+estado\_worker & Último latido y estado visible del worker. \\
+\bottomrule
+\end{longtable}
+
+% ----------------------------------------------------------
+\section{Seguridad}
+% ----------------------------------------------------------
+
+\subsection{Separación de roles}
+
+El sistema distingue:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Administrador/RRHH:} accede a rutas administrativas y datos globales.
+    \item \textbf{Candidato:} accede únicamente a su perfil, CV, postulaciones e invitaciones.
+    \item \textbf{Agente:} no es un usuario; funciona como proceso interno.
+\end{itemize}
+
+Los decoradores \texttt{role\_required} y \texttt{login\_required} validan la sesión antes de ejecutar vistas protegidas. Cuando un usuario intenta ingresar a un área ajena a su rol, la aplicación lo redirige a su dashboard correspondiente.
+
+\subsection{Medidas aplicadas}
+
+\begin{itemize}[leftmargin=*]
+    \item Contraseñas almacenadas mediante hash de Werkzeug.
+    \item Tokens CSRF para solicitudes POST.
+    \item Límite de carga de 16 MB.
+    \item Nombres de archivos saneados mediante \texttt{secure\_filename}.
+    \item Validación de extensión y firma básica del archivo.
+    \item Consultas SQL parametrizadas.
+    \item Variables de entorno para secretos y credenciales SMTP.
+    \item Botón SMTP deshabilitado si falta configuración.
+    \item Conservación del borrador cuando un envío falla.
+\end{itemize}
+
+\subsection{Configuración SMTP}
+
+El envío real se habilita con variables de entorno:
+
+\begin{lstlisting}[language=bash,caption={Ejemplo de configuración SMTP para Gmail en PowerShell.}]
+$env:SMTP_HOST="smtp.gmail.com"
+$env:SMTP_PORT="587"
+$env:SMTP_USER="tu-cuenta@gmail.com"
+$env:SMTP_PASSWORD="tu-contrasena-de-aplicacion"
+$env:SMTP_FROM="tu-cuenta@gmail.com"
+$env:SMTP_USE_TLS="1"
+python app.py
+\end{lstlisting}
+
+Para Gmail debe emplearse una contraseña de aplicación. Las credenciales no deben escribirse en archivos versionados ni compartirse en el código fuente.
+
+% ----------------------------------------------------------
+\section{Flujos de uso}
+% ----------------------------------------------------------
+
+\subsection{Carga de CV personal}
+
+\begin{enumerate}[leftmargin=*]
+    \item El candidato inicia sesión y carga un PDF o DOCX.
+    \item Flask valida y guarda el archivo.
+    \item La base de datos crea un evento \texttt{PREANALIZAR\_PERFIL}.
+    \item El worker reclama el evento.
+    \item El agente compara el CV con vacantes activas.
+    \item Se guardan recomendaciones y evidencia.
+    \item Si existen postulaciones previas, se encolan análisis específicos.
+\end{enumerate}
+
+\subsection{Postulación}
+
+\begin{enumerate}[leftmargin=*]
+    \item El candidato elige una vacante activa.
+    \item La aplicación registra la postulación.
+    \item Se encola \texttt{ANALIZAR\_POSTULACION}.
+    \item El agente procesa el CV, actualiza la compatibilidad y clasifica el perfil.
+    \item El ranking y los reportes se actualizan.
+\end{enumerate}
+
+\subsection{Importación externa}
+
+\begin{enumerate}[leftmargin=*]
+    \item RRHH importa varios CV o deposita archivos en \texttt{uploads/}.
+    \item El worker detecta archivos nuevos no registrados.
+    \item Se crea un evento \texttt{ANALIZAR\_IMPORTADOS} por vacante activa.
+    \item El agente procesa los CV y actualiza los rankings.
+\end{enumerate}
+
+\subsection{Envío de invitaciones}
+
+\begin{enumerate}[leftmargin=*]
+    \item El agente prepara borradores para perfiles preseleccionados.
+    \item RRHH revisa la pantalla de correos.
+    \item RRHH aprueba el envío.
+    \item El módulo SMTP envía cada mensaje individualmente.
+    \item Los mensajes exitosos cambian a estado \texttt{Enviado}.
+    \item Los fallidos permanecen como borradores y se registran en el historial.
+\end{enumerate}
+
+% ----------------------------------------------------------
+\section{Tecnologías utilizadas}
+% ----------------------------------------------------------
+
+\begin{table}[ht]
+\centering
+\begin{tabularx}{\textwidth}{>{\bfseries}p{3.6cm}X}
+\toprule
+Tecnología & Uso en el proyecto \\
+\midrule
+Python & Lenguaje principal. \\
+Flask & Aplicación web, rutas, sesiones y plantillas. \\
+SQLite & Persistencia local y cola de eventos. \\
+Jinja2 & Renderizado de interfaces HTML. \\
+Bootstrap & Diseño visual responsivo con recursos locales. \\
+PyPDF2 & Extracción de texto desde PDF. \\
+python-docx & Lectura de documentos DOCX. \\
+pandas y openpyxl & Exportación de reportes Excel. \\
+FPDF & Generación de reportes PDF. \\
+smtplib & Envío real de invitaciones mediante SMTP. \\
+unittest & Pruebas automatizadas. \\
+\bottomrule
+\end{tabularx}
+\caption{Tecnologías empleadas.}
+\end{table}
+
+% ----------------------------------------------------------
+\section{Instalación y ejecución}
+% ----------------------------------------------------------
+
+\subsection{Preparación}
+
+\begin{lstlisting}[language=bash,caption={Instalación del entorno.}]
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+\end{lstlisting}
+
+\subsection{Ejecución}
+
+La arquitectura requiere dos procesos:
+
+\begin{lstlisting}[language=bash,caption={Terminal 1: aplicación web.}]
+python app.py
+\end{lstlisting}
+
+\begin{lstlisting}[language=bash,caption={Terminal 2: worker autónomo.}]
+python agent_worker.py
+\end{lstlisting}
+
+La interfaz queda disponible en:
+
+\begin{center}
+\url{http://127.0.0.1:5000/}
+\end{center}
+
+La cuenta administrativa de demostración es:
+
+\begin{center}
+\texttt{admin@demo.com} / \texttt{admin123}
+\end{center}
+
+Para un despliegue real debe cambiarse la clave secreta y eliminarse o modificarse la cuenta demo.
+
+% ----------------------------------------------------------
+\section{Pruebas y validación}
+% ----------------------------------------------------------
+
+\subsection{Estrategia}
+
+El proyecto incluye pruebas automatizadas ejecutables mediante:
+
+\begin{lstlisting}[language=bash]
+python -m unittest discover -s tests -v
+\end{lstlisting}
+
+Durante la validación se ejecutaron 14 pruebas con resultado satisfactorio. Además, se verificó la compilación de módulos Python mediante \texttt{py\_compile}.
+
+\subsection{Casos cubiertos}
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{8.2cm}>{\centering\arraybackslash}p{2.2cm}>{\raggedright\arraybackslash}p{3.5cm}}
+\caption{Resumen de validaciones automatizadas.}\\
+\toprule
+\textbf{Caso} & \textbf{Resultado} & \textbf{Objetivo} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Caso} & \textbf{Resultado} & \textbf{Objetivo} \\
+\midrule
+\endhead
+Login administrativo y bloqueo de rutas para candidatos & Correcto & Control de acceso \\
+Protección CSRF en solicitudes POST & Correcto & Seguridad web \\
+Rechazo de vacante inexistente & Correcto & Integridad funcional \\
+Rechazo de PDF falso por extensión & Correcto & Validación de archivos \\
+Detección exacta de habilidades & Correcto & Calidad del análisis \\
+Cálculo ponderado de experiencia y estudios & Correcto & Compatibilidad \\
+Ocultamiento de vacantes cerradas & Correcto & Reglas del negocio \\
+Umbrales configurables & Correcto & Clasificación \\
+Preanálisis sin postulación automática & Correcto & Separación de acciones \\
+Invitaciones sin duplicados & Correcto & Integridad de correos \\
+Envío limitado a la vacante activa & Correcto & Alcance SMTP \\
+Procesamiento desde cola persistente & Correcto & Autonomía \\
+Error tras agotar reintentos & Correcto & Tolerancia a fallos \\
+Detección de CV copiado directamente a \texttt{uploads/} & Correcto & Percepción autónoma \\
+\bottomrule
+\end{longtable}
+
+\subsection{Validación SMTP}
+
+Las pruebas de correo reemplazan temporalmente el transporte SMTP por un mock. Esto verifica que:
+
+\begin{itemize}[leftmargin=*]
+    \item el destinatario, asunto y mensaje se entregan al módulo de transporte;
+    \item solo se procesan borradores de la vacante elegida;
+    \item un envío exitoso cambia a estado \texttt{Enviado};
+    \item otros borradores permanecen intactos.
+\end{itemize}
+
+No se incluyen credenciales reales en el repositorio.
+
+% ----------------------------------------------------------
+\section{Resultados obtenidos}
+% ----------------------------------------------------------
+
+La solución implementada cumple con los objetivos planteados:
+
+\begin{itemize}[leftmargin=*]
+    \item existe separación funcional entre RRHH y candidatos;
+    \item el agente funciona como proceso interno y no como usuario;
+    \item el análisis se ejecuta fuera de las solicitudes HTTP;
+    \item la cola sobrevive reinicios;
+    \item el worker detecta nuevos archivos y eventos;
+    \item los resultados incluyen evidencia y justificación;
+    \item se generan reportes PDF y Excel;
+    \item los correos pueden enviarse realmente mediante SMTP;
+    \item RRHH dispone de trazabilidad y monitoreo.
+\end{itemize}
+
+% ----------------------------------------------------------
+\section{Trabajo futuro}
+% ----------------------------------------------------------
+
+\begin{enumerate}[leftmargin=*]
+    \item Incorporar OCR para PDF escaneados mediante Tesseract u otro servicio especializado.
+    \item Migrar a PostgreSQL para despliegues con mayor concurrencia.
+    \item Ejecutar Flask detrás de Gunicorn, Waitress o un servidor WSGI equivalente.
+    \item Incorporar HTTPS y gestión formal de secretos.
+    \item Añadir edición de plantillas de correo desde el panel.
+    \item Implementar métricas de entrega SMTP y seguimiento de rebotes.
+    \item Añadir pruebas de integración con un servidor SMTP de pruebas.
+    \item Expandir el catálogo de habilidades o incorporar modelos NLP supervisados.
+    \item Permitir programación horaria de ciclos autónomos.
+    \item Incorporar mecanismos de auditoría y anonimización para cumplimiento normativo.
+\end{enumerate}
+
+% ----------------------------------------------------------
+\section{Conclusiones}
+% ----------------------------------------------------------
+
+\projectname{} demuestra que es posible construir un agente autónomo de reclutamiento con herramientas accesibles y una arquitectura comprensible. La plataforma no se limita a presentar pantallas: observa eventos, recupera tareas persistentes, procesa CV en segundo plano y ejecuta acciones derivadas.
+
+El enfoque de compatibilidad ponderada aporta explicabilidad. RRHH puede revisar habilidades, experiencia, estudios, faltantes y acciones sugeridas antes de tomar decisiones. La automatización no reemplaza la supervisión humana: la fortalece al reducir tareas repetitivas y mantener trazabilidad.
+
+Finalmente, la separación entre Flask y el worker mejora la robustez conceptual del proyecto. El agente continúa trabajando aunque no exista una interacción web inmediata, recupera eventos interrumpidos y reporta su estado. Esta separación convierte la propuesta en una solución autónoma funcional y extensible.
+
+% ----------------------------------------------------------
+\section*{Referencias}
+\addcontentsline{toc}{section}{Referencias}
+% ----------------------------------------------------------
+
+\begin{enumerate}[leftmargin=*]
+    \item Pallets Projects. \textit{Flask Documentation}. Disponible en: \url{https://flask.palletsprojects.com/}
+    \item Python Software Foundation. \textit{sqlite3 --- DB-API 2.0 interface for SQLite databases}. Disponible en: \url{https://docs.python.org/3/library/sqlite3.html}
+    \item Python Software Foundation. \textit{smtplib --- SMTP protocol client}. Disponible en: \url{https://docs.python.org/3/library/smtplib.html}
+    \item SQLite Consortium. \textit{SQLite Documentation}. Disponible en: \url{https://www.sqlite.org/docs.html}
+    \item Bootstrap Team. \textit{Bootstrap Documentation}. Disponible en: \url{https://getbootstrap.com/docs/}
+    \item PyPDF2 Contributors. \textit{PyPDF2 Documentation}. Disponible en: \url{https://pypdf2.readthedocs.io/}
+    \item python-docx Contributors. \textit{python-docx Documentation}. Disponible en: \url{https://python-docx.readthedocs.io/}
+\end{enumerate}
+
+% ----------------------------------------------------------
+\appendix
+\section{Estructura del proyecto}
+% ----------------------------------------------------------
+
+\begin{lstlisting}[caption={Estructura principal de carpetas.}]
+app.py                  Aplicacion web Flask
+agent_worker.py         Worker autonomo
+modules/
+  agent.py              Orquestacion
+  analyzer.py           Compatibilidad explicable
+  database.py           Persistencia SQLite
+  email_sender.py       Envio SMTP
+  extractor.py          Extraccion PDF y DOCX
+  ranking.py            Clasificacion
+  reports.py            Reportes PDF y Excel
+templates/              Interfaces HTML
+static/                 CSS, JavaScript y Bootstrap local
+uploads/                CV cargados
+reports/                Reportes generados
+database/               Base SQLite
+logs/                   Registro del worker
+tests/                  Pruebas automatizadas
+\end{lstlisting}
+
+\section{Variables de entorno}
+
+\begin{longtable}{>{\ttfamily}p{4.1cm}>{\raggedright\arraybackslash}p{10.1cm}}
+\toprule
+\textbf{Variable} & \textbf{Uso} \\
+\midrule
+SECRET\_KEY & Clave privada de sesión Flask. \\
+SMTP\_HOST & Servidor SMTP, por ejemplo \texttt{smtp.gmail.com}. \\
+SMTP\_PORT & Puerto SMTP; el valor habitual con TLS es \texttt{587}. \\
+SMTP\_USER & Usuario utilizado para autenticarse. \\
+SMTP\_PASSWORD & Contraseña de aplicación o secreto SMTP. \\
+SMTP\_FROM & Dirección remitente; si se omite se usa \texttt{SMTP\_USER}. \\
+SMTP\_USE\_TLS & Activa STARTTLS cuando vale \texttt{1}. \\
+SMTP\_USE\_SSL & Activa conexión SSL directa cuando vale \texttt{1}. \\
+\bottomrule
+\end{longtable}
+
+\section{Comando de validación}
+
+\begin{lstlisting}[language=bash]
+python -m py_compile app.py agent_worker.py modules/database.py \
+    modules/email_sender.py
+python -m unittest discover -s tests -v
+\end{lstlisting}
+
+\end{document}

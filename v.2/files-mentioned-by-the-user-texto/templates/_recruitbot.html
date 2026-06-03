@@ -1,0 +1,26 @@
+<div class="recruitbot" data-csrf="{{ csrf_token() }}">
+  <button class="recruitbot-toggle" type="button" aria-label="Abrir RecruitBot">
+    <span class="recruitbot-icon">💬</span><span>RecruitBot</span>
+  </button>
+  <section class="recruitbot-window" aria-live="polite">
+    <header class="recruitbot-header">
+      <div>
+        <strong>RecruitBot</strong>
+        <small>Asistente IA de Reclutamiento</small>
+      </div>
+      <span class="recruitbot-status"><i></i> En linea</span>
+      <button class="recruitbot-close" type="button" aria-label="Cerrar">×</button>
+    </header>
+    <div class="recruitbot-messages"></div>
+    <div class="recruitbot-typing">RecruitBot esta escribiendo...</div>
+    <div class="recruitbot-quick">
+      {% for text in ['Mejor candidato','Top 5 candidatos','Resumen de vacante','Proximas entrevistas','Generar preguntas de entrevista'] %}
+      <button type="button" data-message="{{text}}">{{text}}</button>
+      {% endfor %}
+    </div>
+    <form class="recruitbot-form">
+      <input type="text" name="message" placeholder="Pregunta sobre candidatos, vacantes o ranking..." autocomplete="off">
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+</div>

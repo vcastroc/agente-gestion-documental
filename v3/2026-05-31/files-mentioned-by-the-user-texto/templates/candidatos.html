@@ -1,0 +1,2 @@
+{% extends 'base_admin.html' %}{% block heading %}Candidatos{% endblock %}{% block subheading %}Perfiles registrados y CVs incorporados{% endblock %}
+{% block content %}<div class="panel"><table class="table"><thead><tr><th>Nombre</th><th>Correo</th><th>Teléfono</th><th>Archivo</th><th>Fecha</th></tr></thead><tbody>{% for item in candidatos %}<tr><td>{{item.nombre}}</td><td>{{item.correo or '-'}}</td><td>{{item.telefono or '-'}}</td><td>{{item.archivo or '-'}}</td><td>{{item.fecha_creacion}}</td></tr>{% endfor %}</tbody></table></div>{% endblock %}

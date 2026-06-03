@@ -1,0 +1,20 @@
+{% extends 'base_candidato.html' %}{% block heading %}Vacantes disponibles{% endblock %}{% block subheading %}Oportunidades ordenadas segun tu carrera o area{% endblock %}
+{% block content %}
+{% if not usuario.carrera %}<div class="alert alert-warning">Completa tu carrera en Mi perfil para ordenar mejor las vacantes por tu area.</div>{% endif %}
+<h5 class="mb-3">Recomendadas para tu area</h5>
+<div class="row g-3 mb-4">
+{% for item in vacantes %}
+  <div class="col-md-6"><div class="panel h-100"><span class="badge text-bg-success">{{item.estado}}</span> <span class="badge text-bg-primary">Afin a tu perfil</span><h5 class="mt-3">{{item.titulo}}</h5><p class="text-muted">{{item.empresa}} · {{item.area or 'Area general'}}</p><p>{{item.descripcion}}</p><small><strong>Carreras objetivo:</strong> {{item.carreras_objetivo or item.area or 'General'}}<br><strong>Habilidades:</strong> {{item.habilidades or '-'}}</small><form method="post" action="{{url_for('postular_vacante',vacante_id=item.id)}}"><input type="hidden" name="_csrf_token" value="{{csrf_token()}}"><button class="btn btn-primary mt-3">Postular</button></form></div></div>
+{% else %}
+  <div class="col-12"><div class="alert alert-info">No hay vacantes activas para tu area por ahora.</div></div>
+{% endfor %}
+</div>
+{% if otras_vacantes %}
+<h5 class="mb-3">Otras vacantes disponibles</h5>
+<div class="row g-3">
+{% for item in otras_vacantes %}
+  <div class="col-md-6"><div class="panel h-100"><span class="badge text-bg-secondary">Otra area</span><h5 class="mt-3">{{item.titulo}}</h5><p class="text-muted">{{item.empresa}} · {{item.area or 'Area general'}}</p><p>{{item.descripcion}}</p><small><strong>Carreras objetivo:</strong> {{item.carreras_objetivo or item.area or 'General'}}<br><strong>Habilidades:</strong> {{item.habilidades or '-'}}</small><form method="post" action="{{url_for('postular_vacante',vacante_id=item.id)}}"><input type="hidden" name="_csrf_token" value="{{csrf_token()}}"><button class="btn btn-outline-primary mt-3">Postular de todos modos</button></form></div></div>
+{% endfor %}
+</div>
+{% endif %}
+{% endblock %}

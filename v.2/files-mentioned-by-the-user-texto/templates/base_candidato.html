@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}RecruitAI Candidato{% endblock %}</title>
+  <link href="{{ url_for('static', filename='vendor/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/recruitbot.css') }}" rel="stylesheet">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><i class="bi bi-person-workspace"></i> RecruitAI</div>
+    <small>PORTAL DEL CANDIDATO</small>
+    <nav>
+      {% for endpoint, icon, label in [
+        ('candidate_dashboard','speedometer2','Dashboard'), ('perfil_candidato','person','Mi perfil'),
+        ('mi_cv','file-earmark-person','Mi CV'), ('vacantes_disponibles','briefcase','Vacantes disponibles'),
+        ('mis_postulaciones','clipboard-check','Mis postulaciones'), ('invitaciones','calendar-event','Invitaciones')
+      ] %}
+      <a class="{% if request.endpoint == endpoint %}active{% endif %}" href="{{ url_for(endpoint) }}"><i class="bi bi-{{ icon }}"></i>{{ label }}</a>
+      {% endfor %}
+      <a href="{{ url_for('logout') }}"><i class="bi bi-box-arrow-left"></i>Cerrar sesión</a>
+    </nav>
+  </aside>
+  <main class="content">
+    <header class="topbar">
+      <div><h4>{% block heading %}{% endblock %}</h4><p>{% block subheading %}{% endblock %}</p></div>
+      <span class="user-chip"><i class="bi bi-person-circle"></i> {{ session.usuario }}</span>
+    </header>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}<div class="alert alert-{{ category }}">{{ message }}</div>{% endfor %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+  {% include '_recruitbot.html' %}
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

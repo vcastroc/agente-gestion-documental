@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}RecruitAI Admin{% endblock %}</title>
+  <link href="{{ url_for('static', filename='vendor/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/recruitbot.css') }}" rel="stylesheet">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><i class="bi bi-cpu"></i> RecruitAI</div>
+    <small>ADMINISTRACIÓN RRHH</small>
+    <nav>
+      {% for path, icon, label in [
+        ('/admin/dashboard','speedometer2','Dashboard'), ('/admin/vacantes','briefcase','Vacantes'),
+        ('/admin/candidatos','people','Candidatos'), ('/admin/carga-cvs','cloud-arrow-up','Importar CVs externos'),
+        ('/admin/analisis','stars','Análisis IA'), ('/admin/ranking','bar-chart','Ranking'),
+        ('/admin/decision','robot','Decisión del agente'), ('/admin/agente','activity','Control del agente'),
+        ('/admin/correos','envelope','Correos automáticos'),
+        ('/admin/reportes','file-earmark-bar-graph','Reportes'), ('/admin/historial','clock-history','Historial')
+      ] %}
+      <a class="{% if request.path == path %}active{% endif %}" href="{{path}}"><i class="bi bi-{{ icon }}"></i>{{ label }}</a>
+      {% endfor %}
+      <a href="{{ url_for('logout') }}"><i class="bi bi-box-arrow-left"></i>Cerrar sesión</a>
+    </nav>
+  </aside>
+  <main class="content">
+    <header class="topbar">
+      <div><h4>{% block heading %}{% endblock %}</h4><p>{% block subheading %}{% endblock %}</p></div>
+      <span class="user-chip"><i class="bi bi-person-circle"></i> {{ session.usuario }} · RRHH</span>
+    </header>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}<div class="alert alert-{{ category }}">{{ message }}</div>{% endfor %}
+    {% endwith %}
+    {% if nav_vacantes and nav_vacante %}<form class="vacancy-switcher mb-3" method="post" action="{{url_for('seleccionar_vacante',vacante_id=nav_vacante.id)}}"><input type="hidden" name="_csrf_token" value="{{csrf_token()}}"><label class="form-label mb-1">Vacante activa</label><div class="d-flex gap-2"><select class="form-select" onchange="this.form.action='/admin/vacante-activa/'+this.value">{% for item in nav_vacantes %}<option value="{{item.id}}" {% if item.id == nav_vacante.id %}selected{% endif %}>{{item.titulo}} · {{item.empresa}}</option>{% endfor %}</select><button class="btn btn-outline-primary">Cambiar</button></div></form>{% endif %}
+    {% block content %}{% endblock %}
+  </main>
+  {% include '_recruitbot.html' %}
+  <script src="{{ url_for('static', filename='vendor/bootstrap/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
