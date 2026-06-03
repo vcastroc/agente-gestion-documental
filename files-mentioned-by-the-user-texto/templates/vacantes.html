@@ -1,0 +1,41 @@
+{% extends 'base_admin.html' %}{% block heading %}Gestion de vacantes{% endblock %}{% block subheading %}Configura oportunidades por area, carrera y reglas del agente{% endblock %}
+{% block content %}
+<div class="panel mb-4">
+  <h5>Nueva vacante</h5>
+  <form method="post">
+    <input type="hidden" name="_csrf_token" value="{{csrf_token()}}">
+    <div class="row g-3">
+      {% for name,label in [('titulo','Titulo del puesto'),('empresa','Empresa'),('area','Area'),('experiencia','Experiencia minima (anios)'),('estudios','Nivel de estudios'),('fecha_entrevista','Fecha de entrevista'),('hora_entrevista','Hora de entrevista')] %}
+      <div class="col-md-4">
+        <label class="form-label">{{label}}</label>
+        <input class="form-control" name="{{name}}" {% if name=='fecha_entrevista' %}type="date"{% elif name=='hora_entrevista' %}type="time"{% elif name=='experiencia' %}type="number" value="0" min="0"{% endif %} {% if name in ['titulo','empresa'] %}required{% endif %}>
+      </div>
+      {% endfor %}
+      <div class="col-12">
+        <label class="form-label">Carreras o areas objetivo</label>
+        <input class="form-control" name="carreras_objetivo" placeholder="Sistemas, Informatica, Software, Contabilidad, Administracion">
+        <small class="text-muted">El candidato vera primero las vacantes compatibles con la carrera registrada en su perfil.</small>
+      </div>
+      <div class="col-12"><label class="form-label">Descripcion</label><textarea class="form-control" name="descripcion"></textarea></div>
+      <div class="col-md-6"><label class="form-label">Requisitos</label><textarea class="form-control" name="requisitos"></textarea></div>
+      <div class="col-md-6"><label class="form-label">Habilidades requeridas</label><textarea class="form-control" name="habilidades" placeholder="Python, SQL, Git"></textarea></div>
+    </div>
+    <hr>
+    <h6>Configuracion explicable del agente</h6>
+    <div class="row g-3">
+      {% for name,label,value in [('peso_habilidades','Peso habilidades (%)',70),('peso_experiencia','Peso experiencia (%)',20),('peso_estudios','Peso estudios (%)',10),('umbral_preseleccion','Umbral preseleccion (%)',80),('umbral_observacion','Umbral observacion (%)',60)] %}
+      <div class="col-md"><label class="form-label">{{label}}</label><input class="form-control" name="{{name}}" type="number" min="0" max="100" value="{{value}}" required></div>
+      {% endfor %}
+    </div>
+    <button class="btn btn-primary mt-3">Guardar vacante</button>
+  </form>
+</div>
+<div class="panel">
+  <h5>Vacantes creadas</h5>
+  <div class="table-responsive"><table class="table"><thead><tr><th>Cargo</th><th>Empresa</th><th>Area</th><th>Carreras objetivo</th><th>Estado</th><th>Reglas</th><th>Acciones</th></tr></thead><tbody>
+  {% for item in vacantes %}
+  <tr><td>{{item.titulo}}</td><td>{{item.empresa}}</td><td>{{item.area or '-'}}</td><td>{{item.carreras_objetivo or '-'}}</td><td><span class="badge {% if item.estado == 'Activa' %}text-bg-success{% elif item.estado == 'Pausada' %}text-bg-warning{% else %}text-bg-secondary{% endif %}">{{item.estado}}</span></td><td><small>H {{item.peso_habilidades }} · E {{item.peso_experiencia}} · Est {{item.peso_estudios}}<br>Preseleccion >= {{item.umbral_preseleccion}}%</small></td><td>{% for estado,label,color in [('Activa','Activar','success'),('Pausada','Pausar','warning'),('Cerrada','Cerrar','secondary')] %}<form class="d-inline" method="post" action="{{url_for('cambiar_estado_vacante',vacante_id=item.id,estado=estado)}}"><input type="hidden" name="_csrf_token" value="{{csrf_token()}}"><button class="btn btn-sm btn-outline-{{color}}" {% if item.estado == estado %}disabled{% endif %}>{{label}}</button></form> {% endfor %}</td></tr>
+  {% endfor %}
+  </tbody></table></div>
+</div>
+{% endblock %}

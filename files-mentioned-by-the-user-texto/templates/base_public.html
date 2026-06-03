@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}RecruitAI{% endblock %}</title>
+  <link href="{{ url_for('static', filename='vendor/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/recruitbot.css') }}" rel="stylesheet">
+</head>
+<body class="public-body">
+  <nav class="navbar navbar-expand-lg public-nav">
+    <div class="container">
+      <a class="navbar-brand" href="{{url_for('landing')}}"><i class="bi bi-cpu"></i> RecruitAI</a>
+      <div class="navbar-nav ms-auto align-items-center">
+        <a class="nav-link" href="{{url_for('landing')}}">Inicio</a>
+        <a class="nav-link" href="{{url_for('sobre_nosotros')}}">Sobre nosotros</a>
+        <a class="nav-link" href="{{url_for('vacantes_publicas')}}">Vacantes</a>
+        <a class="nav-link" href="{{url_for('login')}}">Iniciar sesión</a>
+        <a class="btn btn-primary ms-lg-3" href="{{url_for('register')}}">Registrarse</a>
+      </div>
+    </div>
+  </nav>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}<div class="container mt-3"><div class="alert alert-{{category}}">{{message}}</div></div>{% endfor %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+  <footer class="public-footer"><div class="container d-flex justify-content-between"><strong>RecruitAI</strong><span>Agente Autónomo de Reclutamiento Inteligente</span></div></footer>
+  {% include '_recruitbot.html' %}
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+{% extends 'base_admin.html' %}{% block heading %}Historial{% endblock %}{% block subheading %}Trazabilidad de las decisiones y acciones del agente{% endblock %}
+{% block content %}<div class="panel"><table class="table"><thead><tr><th>Evento</th><th>Detalle</th><th>Fecha</th></tr></thead><tbody>{% for item in historial %}<tr><td><strong>{{item.evento}}</strong></td><td>{{item.detalle}}</td><td>{{item.fecha}}</td></tr>{% endfor %}</tbody></table></div>{% endblock %}

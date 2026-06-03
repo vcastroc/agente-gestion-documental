@@ -1,0 +1,23 @@
+.recruitbot{bottom:22px;position:fixed;right:22px;z-index:2000}
+.recruitbot-toggle{align-items:center;background:linear-gradient(135deg,#1557b0,#102a54);border:0;border-radius:999px;box-shadow:0 12px 30px #102a5450;color:#fff;display:flex;font-weight:800;gap:8px;padding:13px 18px}
+.recruitbot-icon{font-size:20px}
+.recruitbot-window{background:#fff;border:1px solid #dbe7f5;border-radius:18px;bottom:62px;box-shadow:0 22px 70px #102a5445;display:flex;flex-direction:column;height:550px;opacity:0;overflow:hidden;pointer-events:none;position:absolute;right:0;transform:translateY(14px) scale(.96);transition:.22s ease;width:380px}
+.recruitbot.open .recruitbot-window{opacity:1;pointer-events:auto;transform:translateY(0) scale(1)}
+.recruitbot-header{align-items:center;background:linear-gradient(135deg,#102a54,#1557b0);color:#fff;display:flex;gap:12px;justify-content:space-between;padding:16px}
+.recruitbot-header strong,.recruitbot-header small{display:block}
+.recruitbot-header small{color:#cfe0f6;font-size:12px}
+.recruitbot-status{font-size:12px;white-space:nowrap}
+.recruitbot-status i{background:#38d67a;border-radius:50%;display:inline-block;height:9px;margin-right:4px;width:9px}
+.recruitbot-close{background:#ffffff20;border:0;border-radius:50%;color:#fff;font-size:22px;height:32px;line-height:1;width:32px}
+.recruitbot-messages{display:flex;flex:1;flex-direction:column;gap:10px;overflow:auto;padding:14px}
+.recruitbot-msg{border-radius:14px;font-size:14px;line-height:1.35;max-width:86%;padding:10px 12px;white-space:pre-wrap}
+.recruitbot-msg.bot{align-self:flex-start;background:#eef5ff;color:#18345b}
+.recruitbot-msg.user{align-self:flex-end;background:#1557b0;color:#fff}
+.recruitbot-typing{color:#6b7a90;display:none;font-size:12px;padding:0 14px 8px}
+.recruitbot.typing .recruitbot-typing{display:block}
+.recruitbot-quick{display:flex;flex-wrap:wrap;gap:7px;padding:0 12px 12px}
+.recruitbot-quick button{background:#f3f7fc;border:1px solid #d8e7f8;border-radius:999px;color:#1557b0;font-size:12px;padding:7px 10px}
+.recruitbot-form{border-top:1px solid #e7edf5;display:flex;gap:8px;padding:12px}
+.recruitbot-form input{border:1px solid #d8e4f2;border-radius:999px;flex:1;padding:10px 12px}
+.recruitbot-form button{background:#1557b0;border:0;border-radius:999px;color:#fff;font-weight:700;padding:10px 14px}
+@media(max-width:600px){.recruitbot{bottom:15px;right:15px}.recruitbot-window{bottom:58px;height:70vh;right:0;width:calc(100vw - 30px)}.recruitbot-toggle span:last-child{display:none}}

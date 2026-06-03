@@ -1,0 +1,446 @@
+2026-05-31 15:06:31,450 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 73, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 64, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-05-31 15:06:32,096 INFO Evento #1 completado: Perfil comparado automáticamente con 1 vacante(s) activa(s).
+2026-05-31 15:06:50,659 INFO Worker autónomo iniciado: YOSHI-3032002-2921096789616
+2026-05-31 15:06:51,534 INFO Worker autónomo iniciado: YOSHI-3032002-2152143568480
+2026-05-31 15:08:08,912 INFO Worker autónomo iniciado: YOSHI-3032002-1525234581088
+2026-05-31 15:08:09,602 INFO Evento #1 completado: 3 CV(s) analizado(s), 3 perfil(es) en ranking y acciones preparadas.
+2026-05-31 15:09:46,573 INFO Evento #2 completado: 3 CV(s) analizado(s), 3 perfil(es) en ranking y acciones preparadas.
+2026-05-31 15:10:04,931 INFO 1 CV(s) nuevo(s) detectado(s) en uploads
+2026-05-31 15:10:05,395 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 90, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 81, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-05-31 15:10:06,246 INFO Evento #1 completado: Perfil comparado automáticamente con 1 vacante(s) activa(s).
+2026-05-31 15:10:14,496 INFO Worker autónomo iniciado: YOSHI-3032002-1918428036704
+2026-05-31 15:10:14,523 INFO 1 CV(s) nuevo(s) detectado(s) en uploads
+2026-05-31 15:10:14,809 INFO Evento #3 completado: 1 CV(s) analizado(s), 4 perfil(es) en ranking y acciones preparadas.
+2026-05-31 15:10:14,929 INFO Evento #4 completado: 1 CV(s) analizado(s), 7 perfil(es) en ranking y acciones preparadas.
+2026-05-31 15:10:48,529 INFO 1 CV(s) nuevo(s) detectado(s) en uploads
+2026-05-31 15:10:48,879 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 90, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 81, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-05-31 15:10:49,523 INFO Evento #1 completado: Perfil comparado automáticamente con 1 vacante(s) activa(s).
+2026-05-31 15:11:05,749 INFO Worker autónomo iniciado: YOSHI-3032002-2366564712032
+2026-05-31 15:14:53,481 INFO Evento #5 completado: 4 CV(s) analizado(s), 4 perfil(es) en ranking y acciones preparadas.
+2026-05-31 19:38:11,721 INFO Worker autónomo iniciado: YOSHI-3032002-2136738545248
+2026-05-31 19:42:30,395 INFO Evento #6 completado: Perfil comparado automáticamente con 2 vacante(s) activa(s).
+2026-05-31 19:44:10,345 INFO Evento #7 completado: 5 CV(s) analizado(s), 5 perfil(es) en ranking y acciones preparadas.
+2026-05-31 19:45:45,338 INFO Evento #8 completado: CV analizado automáticamente: 30.0% - No recomendado.
+2026-05-31 19:46:48,601 INFO Evento #9 completado: 5 CV(s) analizado(s), 5 perfil(es) en ranking y acciones preparadas.
+2026-05-31 19:53:52,666 INFO Evento #10 completado: Postulación guardada. El candidato aún no cargó un CV para analizar.
+2026-05-31 19:54:07,002 INFO Evento #11 completado: Perfil comparado automáticamente con 2 vacante(s) activa(s).
+2026-05-31 19:54:07,145 INFO Evento #12 completado: CV analizado automáticamente: 21.67% - No recomendado.
+2026-05-31 19:58:37,996 INFO 1 CV(s) nuevo(s) detectado(s) en uploads
+2026-05-31 19:58:38,423 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 90, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 81, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-05-31 19:58:39,277 INFO Evento #1 completado: Perfil comparado automáticamente con 1 vacante(s) activa(s).
+2026-05-31 20:40:32,130 INFO 1 CV(s) nuevo(s) detectado(s) en uploads
+2026-05-31 20:40:32,525 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 90, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 81, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-05-31 20:40:33,293 INFO Evento #1 completado: Perfil comparado automáticamente con 1 vacante(s) activa(s).
+2026-05-31 20:41:09,756 INFO Worker autónomo iniciado: YOSHI-3032002-2413041532512
+2026-05-31 22:18:37,727 INFO Worker autónomo iniciado: YOSHI-3032002-2051919560288
+2026-05-31 22:21:02,757 INFO Evento #13 completado: Perfil comparado automáticamente con 2 vacante(s) activa(s).
+2026-05-31 22:21:02,776 INFO 1 CV(s) nuevo(s) detectado(s) en uploads
+2026-05-31 22:21:08,802 INFO Evento #14 completado: CV analizado automáticamente: 45.0% - No recomendado.
+2026-05-31 22:21:15,883 INFO Evento #15 completado: 1 CV(s) analizado(s), 7 perfil(es) en ranking y acciones preparadas.
+2026-05-31 22:21:22,609 INFO Evento #16 completado: 1 CV(s) analizado(s), 10 perfil(es) en ranking y acciones preparadas.
+2026-05-31 22:21:28,598 INFO Evento #17 completado: CV analizado automáticamente: 33.33% - No recomendado.
+2026-05-31 22:23:18,994 INFO Evento #18 completado: 7 CV(s) analizado(s), 11 perfil(es) en ranking y acciones preparadas.
+2026-05-31 22:29:15,539 INFO 1 CV(s) nuevo(s) detectado(s) en uploads
+2026-05-31 22:29:15,988 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 90, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 81, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-05-31 22:29:16,875 INFO Evento #1 completado: Perfil comparado automáticamente con 1 vacante(s) activa(s).
+2026-05-31 22:30:15,852 INFO Worker autónomo iniciado: YOSHI-3032002-2314185129568
+2026-05-31 22:31:44,849 INFO Evento #19 completado: 7 CV(s) analizado(s), 7 perfil(es) en ranking y acciones preparadas.
+2026-05-31 22:33:24,434 INFO Evento #20 completado: 7 CV(s) analizado(s), 11 perfil(es) en ranking y acciones preparadas.
+2026-06-01 17:11:34,561 INFO Worker autónomo iniciado: YOSHI-3032002-2316187057760
+2026-06-01 17:33:03,399 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 91, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 82, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-01 17:33:10,250 INFO 1 CV(s) nuevo(s) detectado(s) en uploads
+2026-06-01 17:33:10,616 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 91, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 82, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-01 17:33:11,326 INFO Evento #1 completado: Perfil comparado automáticamente con 1 vacante(s) activa(s).
+2026-06-01 17:33:39,258 INFO Worker autónomo iniciado: YOSHI-3032002-1519714680416
+2026-06-01 17:53:24,379 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 91, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 82, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-01 17:53:32,671 INFO 1 CV(s) nuevo(s) detectado(s) en uploads
+2026-06-01 17:53:33,224 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 91, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 82, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-01 17:53:34,300 INFO Evento #1 completado: Perfil comparado automáticamente con 1 vacante(s) activa(s).
+2026-06-01 18:07:47,160 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 96, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-01 18:07:55,808 INFO 1 CV(s) nuevo(s) detectado(s) en uploads
+2026-06-01 18:07:56,274 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 96, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-01 18:07:57,117 INFO Evento #1 completado: Perfil comparado automáticamente con 1 vacante(s) activa(s).
+2026-06-01 18:08:39,848 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 96, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-01 18:08:41,926 INFO Evento #1 completado: 1 correo(s) enviados por SMTP.
+2026-06-01 18:08:50,547 INFO 1 CV(s) nuevo(s) detectado(s) en uploads
+2026-06-01 18:08:51,342 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 96, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-01 18:08:51,784 INFO CV duplicado omitido: second.docx
+2026-06-01 18:08:52,497 INFO Evento #1 completado: Perfil comparado automáticamente con 1 vacante(s) activa(s).
+2026-06-01 18:09:27,804 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 96, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-01 18:09:29,840 INFO Evento #1 completado: 1 correo(s) enviados por SMTP.
+2026-06-01 18:09:38,173 INFO 1 CV(s) nuevo(s) detectado(s) en uploads
+2026-06-01 18:09:39,056 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 96, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-01 18:09:39,525 INFO CV duplicado omitido: second.docx
+2026-06-01 18:09:40,278 INFO Evento #1 completado: Perfil comparado automáticamente con 1 vacante(s) activa(s).
+2026-06-01 18:10:30,554 INFO Worker autónomo iniciado: YOSHI-3032002-1906122276448
+2026-06-01 18:12:21,751 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 96, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-01 18:12:23,929 INFO Evento #1 completado: 1 correo(s) enviados por SMTP.
+2026-06-01 18:12:34,105 INFO 1 CV(s) nuevo(s) detectado(s) en uploads
+2026-06-01 18:12:35,042 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 96, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-01 18:12:35,591 INFO CV duplicado omitido: second.docx
+2026-06-01 18:12:36,655 INFO Evento #1 completado: Perfil comparado automáticamente con 1 vacante(s) activa(s).
+2026-06-01 18:12:54,653 INFO Worker autónomo iniciado: YOSHI-3032002-2276196007520
+2026-06-01 18:18:52,625 INFO Evento #21 completado: 7 CV(s) analizado(s), 11 perfil(es) en ranking y acciones preparadas.
+2026-06-01 21:21:14,149 INFO Evento #21 completado: 7 CV(s) analizado(s), 11 perfil(es) en ranking y acciones preparadas.
+2026-06-02 08:39:29,219 INFO Evento #22 completado: 7 CV(s) analizado(s), 11 perfil(es) en ranking y acciones preparadas.
+2026-06-02 19:31:05,528 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 96, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-02 19:31:07,902 INFO Evento #1 completado: 1 correo(s) enviados por SMTP.
+2026-06-02 19:31:08,402 INFO Evento #1 completado: 1 correo(s) enviados por SMTP.
+2026-06-02 19:31:16,713 INFO 1 CV(s) nuevo(s) detectado(s) en uploads
+2026-06-02 19:31:17,548 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 96, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-02 19:31:18,094 INFO 1 CV(s) nuevo(s) detectado(s) en uploads
+2026-06-02 19:31:18,949 INFO Evento #1 completado: Perfil comparado automáticamente con 1 vacante(s) activa(s).
+2026-06-02 19:31:36,253 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 96, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-02 19:31:38,679 INFO Evento #1 completado: 1 correo(s) enviados por SMTP.
+2026-06-02 19:31:39,170 INFO Evento #1 completado: 1 correo(s) enviados por SMTP.
+2026-06-02 19:31:47,646 INFO 1 CV(s) nuevo(s) detectado(s) en uploads
+2026-06-02 19:31:48,706 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 96, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-02 19:31:49,168 INFO CV duplicado omitido: second.docx
+2026-06-02 19:32:13,199 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 96, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-02 19:32:18,695 INFO Evento #1 completado: 1 correo(s) enviados por SMTP.
+2026-06-02 19:32:20,016 INFO Evento #1 completado: 1 correo(s) enviados por SMTP.
+2026-06-02 19:32:43,472 INFO 1 CV(s) nuevo(s) detectado(s) en uploads
+2026-06-02 19:32:45,940 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 96, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-02 19:32:47,198 INFO CV duplicado omitido: second.docx
+2026-06-02 19:32:49,516 INFO Evento #1 completado: Perfil comparado automáticamente con 1 vacante(s) activa(s).
+2026-06-02 19:33:49,894 INFO Worker autónomo iniciado: YOSHI-3032002-3025914216032
+2026-06-02 19:34:08,111 ERROR Evento #23 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 94, in ejecutar_evento
+    result = enviar_correos_en_cola(payload["vacante_id"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\modules\email_sender.py", line 91, in enviar_correos_en_cola
+    raise RuntimeError(" | ".join(errores)[:500])
+RuntimeError: ana.torres@demo.com: Configura SMTP_HOST y SMTP_FROM o SMTP_USER antes de enviar correos.
+2026-06-02 19:34:13,986 ERROR Evento #23 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 91, in procesar_siguiente_evento
+    ejecutar_ciclo_masivo(payload["vacante_id"], origen="Worker: reproceso solicitado")
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 82, in ejecutar_evento
+    return _validar_resultado(
+ValueError: Tipo de evento no soportado: ENVIAR_CORREOS
+2026-06-02 19:34:18,375 ERROR Evento #23 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 94, in ejecutar_evento
+    result = enviar_correos_en_cola(payload["vacante_id"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\modules\email_sender.py", line 91, in enviar_correos_en_cola
+    raise RuntimeError(" | ".join(errores)[:500])
+RuntimeError: ana.torres@demo.com: Configura SMTP_HOST y SMTP_FROM o SMTP_USER antes de enviar correos.
+2026-06-02 19:35:33,550 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 96, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-02 19:35:35,479 INFO Evento #1 completado: 1 correo(s) enviados por SMTP.
+2026-06-02 19:35:35,861 INFO Evento #1 completado: 1 correo(s) enviados por SMTP.
+2026-06-02 19:35:42,533 INFO 1 CV(s) nuevo(s) detectado(s) en uploads
+2026-06-02 19:35:43,281 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 96, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-02 19:35:43,730 INFO CV duplicado omitido: second.docx
+2026-06-02 19:35:44,427 INFO Evento #1 completado: Perfil comparado automáticamente con 1 vacante(s) activa(s).
+2026-06-02 20:40:27,540 INFO Worker autónomo iniciado: YOSHI-3032002-3067453488736
+2026-06-02 20:40:53,792 ERROR Evento #23 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 94, in ejecutar_evento
+    result = enviar_correos_en_cola(payload["vacante_id"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\modules\email_sender.py", line 91, in enviar_correos_en_cola
+    raise RuntimeError(" | ".join(errores)[:500])
+RuntimeError: ana.torres@demo.com: [WinError 10013] Intento de acceso a un socket no permitido por sus permisos de acceso
+2026-06-02 20:40:58,671 ERROR Evento #23 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 94, in ejecutar_evento
+    result = enviar_correos_en_cola(payload["vacante_id"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\modules\email_sender.py", line 91, in enviar_correos_en_cola
+    raise RuntimeError(" | ".join(errores)[:500])
+RuntimeError: ana.torres@demo.com: Configura SMTP_HOST y SMTP_FROM o SMTP_USER antes de enviar correos.
+2026-06-02 20:41:03,924 ERROR Evento #23 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 94, in ejecutar_evento
+    result = enviar_correos_en_cola(payload["vacante_id"])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\modules\email_sender.py", line 91, in enviar_correos_en_cola
+    raise RuntimeError(" | ".join(errores)[:500])
+RuntimeError: ana.torres@demo.com: [WinError 10013] Intento de acceso a un socket no permitido por sus permisos de acceso
+2026-06-02 20:43:41,309 INFO Worker autónomo iniciado: YOSHI-3032002-1695131876960
+2026-06-02 20:44:46,748 INFO Evento #23 completado: 1 correo(s) enviados por SMTP.
+2026-06-02 21:00:48,288 INFO Evento #24 completado: Perfil comparado automáticamente con 2 vacante(s) activa(s).
+2026-06-02 21:00:48,315 INFO 1 CV(s) nuevo(s) detectado(s) en uploads
+2026-06-02 21:01:02,371 INFO Evento #25 completado: CV analizado automáticamente: 27.5% - No recomendado.
+2026-06-02 21:01:15,380 INFO Evento #26 completado: CV analizado automáticamente: 56.67% - No recomendado.
+2026-06-02 21:01:28,286 INFO Evento #27 completado: 1 CV(s) analizado(s), 8 perfil(es) en ranking y acciones preparadas.
+2026-06-02 21:01:43,165 INFO Evento #28 completado: 1 CV(s) analizado(s), 12 perfil(es) en ranking y acciones preparadas.
+2026-06-02 21:05:05,340 INFO Evento #29 completado: 8 CV(s) analizado(s), 8 perfil(es) en ranking y acciones preparadas.
+2026-06-02 21:05:13,826 INFO Evento #30 completado: 1 correo(s) enviados por SMTP.
+2026-06-02 21:11:14,432 INFO Worker autónomo iniciado: YOSHI-3032002-2049577238112
+2026-06-02 21:19:08,779 INFO Evento #1 completado: Perfil comparado automáticamente con 2 vacante(s) activa(s).
+2026-06-02 21:21:55,811 INFO Evento #2 completado: Perfil comparado automáticamente con 2 vacante(s) activa(s).
+2026-06-02 21:21:55,847 INFO 1 CV(s) nuevo(s) detectado(s) en uploads
+2026-06-02 21:22:14,364 INFO Evento #3 completado: CV analizado automáticamente: 80.0% - Preseleccionado.
+2026-06-02 21:22:33,230 INFO Evento #4 completado: CV analizado automáticamente: 80.0% - Preseleccionado.
+2026-06-02 21:22:49,011 INFO Evento #5 completado: 1 CV(s) analizado(s), 2 perfil(es) en ranking y acciones preparadas.
+2026-06-02 21:23:04,195 INFO Evento #6 completado: 1 CV(s) analizado(s), 2 perfil(es) en ranking y acciones preparadas.
+2026-06-02 21:24:10,239 INFO Evento #7 completado: 2 CV(s) analizado(s), 2 perfil(es) en ranking y acciones preparadas.
+2026-06-02 21:27:33,405 INFO Evento #8 completado: 1 correo(s) enviados por SMTP.
+2026-06-02 21:47:35,849 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 96, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-02 21:47:38,166 INFO Evento #1 completado: 1 correo(s) enviados por SMTP.
+2026-06-02 21:47:38,561 INFO Evento #1 completado: 1 correo(s) enviados por SMTP.
+2026-06-02 21:47:47,824 INFO 1 CV(s) nuevo(s) detectado(s) en uploads
+2026-06-02 21:47:48,594 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 96, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-02 21:47:49,031 INFO CV duplicado omitido: second.docx
+2026-06-02 21:47:49,779 INFO Evento #1 completado: Perfil comparado automáticamente con 1 vacante(s) activa(s).
+2026-06-02 21:48:45,847 INFO Worker autónomo iniciado: YOSHI-3032002-2555707506272
+2026-06-02 21:59:41,650 INFO Evento #9 completado: 2 CV(s) analizado(s), 2 perfil(es) en ranking y acciones preparadas.
+2026-06-02 22:20:03,023 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 96, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-02 22:20:05,357 INFO Evento #1 completado: 1 correo(s) enviados por SMTP.
+2026-06-02 22:20:05,778 INFO Evento #1 completado: 1 correo(s) enviados por SMTP.
+2026-06-02 22:20:16,136 INFO 1 CV(s) nuevo(s) detectado(s) en uploads
+2026-06-02 22:20:16,881 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 96, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-02 22:20:17,402 INFO CV duplicado omitido: second.docx
+2026-06-02 22:20:18,180 INFO Evento #1 completado: Perfil comparado automáticamente con 1 vacante(s) activa(s).
+2026-06-02 22:21:06,933 INFO Worker autónomo iniciado: YOSHI-3032002-1340712009312
+2026-06-02 22:29:43,369 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 96, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-02 22:29:45,565 INFO Evento #1 completado: 1 correo(s) enviados por SMTP.
+2026-06-02 22:29:45,996 INFO Evento #1 completado: 1 correo(s) enviados por SMTP.
+2026-06-02 22:29:56,769 INFO 1 CV(s) nuevo(s) detectado(s) en uploads
+2026-06-02 22:29:57,543 ERROR Evento #1 falló
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 117, in procesar_siguiente_evento
+    detail = ejecutar_evento(event)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\Documents\Codex\2026-05-31\files-mentioned-by-the-user-texto\agent_worker.py", line 96, in ejecutar_evento
+    raise ValueError(f"Tipo de evento no soportado: {event['tipo']}")
+ValueError: Tipo de evento no soportado: EVENTO_DESCONOCIDO
+2026-06-02 22:29:57,960 INFO CV duplicado omitido: second.docx
+2026-06-02 22:29:58,824 INFO Evento #1 completado: Perfil comparado automáticamente con 1 vacante(s) activa(s).
+2026-06-02 22:30:36,045 INFO Worker autónomo iniciado: YOSHI-3032002-1253222235744
